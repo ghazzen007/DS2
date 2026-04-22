@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  # Service 1: Your DS1 Website
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    container_name: ds2-frontend
+    restart: always
+
+  # Service 2: The BONUS Multi-Service Architecture
+  logger-api:
+    image: python:3.9-alpine
+    # Changed the port to 8085 here:
+    command: python -m http.server 8085
+    ports:
+      # And changed the mapping to 8085 here:
+      - "8085:8085"
+    container_name: ds2-backend-mock
+    restart: always
